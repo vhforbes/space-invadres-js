@@ -32,30 +32,30 @@ class SpaceInvaders {
       }
     };
 
-    const spawnSpaceship = () => {
-      // Pegar os ultimos COLUMN elements do cara
-
-      const gameBoardChildren = [...gameBoard.children];
-
-      const lastRowElements = gameBoardChildren.slice(
-        gameBoard.children.length - this.columns,
-        gameBoard.children.length
-      );
-
-      const columnToSpawn = Math.round(lastRowElements.length / 2) - 1;
-
-      lastRowElements[columnToSpawn].style.backgroundColor = "red";
-
-      return {
-        x: columnToSpawn,
-      };
-    };
-
     createGrid();
-    spawnSpaceship();
   }
+
+  spawnSpaceship = () => {
+    const gameBoard = document.getElementById("game-board");
+
+    const gameBoardChildren = [...gameBoard.children];
+
+    const lastRowElements = gameBoardChildren.slice(
+      gameBoard.children.length - this.columns,
+      gameBoard.children.length
+    );
+
+    const columnToSpawn = Math.round(lastRowElements.length / 2) - 1;
+
+    lastRowElements[columnToSpawn].style.backgroundColor = "red";
+
+    return {
+      x: columnToSpawn,
+    };
+  };
 }
 
-const NewGame = new SpaceInvaders({ rows: 10, columns: 10 });
+const NewGame = new SpaceInvaders({ rows: 20, columns: 20 });
 
 NewGame.drawBoard();
+NewGame.spawnSpaceship();
